@@ -1,3 +1,4 @@
+import {relayBoundary} from './core.mjs';
 let running=false;
 const copy=value=>structuredClone(value);
 
@@ -83,6 +84,7 @@ export async function generateNative({d,helper,context,request,scope,extraInstru
     const generationId=`writer-relay-${Date.now()}-${Math.random().toString(36).slice(2)}`;
     const options=nativeOptions(d,{previous:previous?.mes||previous?.message||'',generationId,customApi:{apiurl:session.apiurl,key:session.key,model:session.model},regex,userName:context().name1});
     options.injects.push(...extraInstructions().map(row=>({role:row.role||'system',content:row.content,position:'in_chat',depth:0,should_scan:false})));
+    options.injects.push({role:'system',content:relayBoundary(d,context().name1),position:'in_chat',depth:0,should_scan:false});
     const event=context().event_types?.CHAT_COMPLETION_SETTINGS_READY||'chat_completion_settings_ready';
     // Capture output regexes while the selected preset is active, then restore settings before the network wait.
     const outputRules=copy(engine.getRegexScripts({allowedOnly:true}));

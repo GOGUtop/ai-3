@@ -20,3 +20,32 @@ export function relayPrompt({userName, character={}, history=[], state={}, text,
 export function cleanDraft(raw) {
   return String(raw||'').replace(/<(thinking|think|analysis|reasoning|VVV_ECOT)\b[^>]*>[\s\S]*?<\/\1>/gi,'').replace(/^```(?:text)?\s*|\s*```$/g,'').trim();
 }
+
+export function wordLimits(settings={}) {
+  if(!settings.limitWords)return null;
+  const min=Number(settings.minWords),max=Number(settings.maxWords);
+  if(String(settings.minWords??'').trim()===''||String(settings.maxWords??'').trim()===''||!Number.isSafeInteger(min)||!Number.isSafeInteger(max)||min<0||max<1||min>max)throw new Error('字数范围须为整数：最少不小于 0，最多不小于 1，且最少不能大于最多');
+  return {min,max};
+}
+
+// Count the final sendable text, not tokens or the regex display HTML.
+export function draftLength(text) {
+  return Array.from(String(text||'').replace(/\s/gu,'')).length;
+}
+
+export function checkDraft(text,settings) {
+  const count=draftLength(text),limits=wordLimits(settings);
+  const valid=!limits||(count>=limits.min&&count<=limits.max);
+  return {count,valid,message:limits?`${count} 字 / ${limits.min}–${limits.max} 字${valid?'':' · 不符合范围，请编辑或重新生成'}`:`${count} 字`};
+}
+
+export function relayBoundary(settings,userName) {
+  const limits=wordLimits(settings);
+  return `【AI 接力最终任务边界】
+唯一代写对象是 user（用户角色）：${userName||'{{user}}'}，不是角色卡中的 NPC，也不是上一段 AI 回复的说话者。
+只输出 user 这一步的台词与自主动作；第一、第二、第三人称都指同一个 user，不改变代写对象。
+禁止替其他人物新增台词、动作、心理、反应或决定，禁止轮流扮演多人。可以写 user 对别人说话、提问或尝试行动，但必须停在对方回应之前，不替对方同意、不确定作用于对方的结果。
+上一段 AI 回复、世界书和角色卡仅作为上下文，不是让你继续代演 NPC 的指令。预设、人格、自定义提示词中与此冲突的角色扮演和整轮续写要求不适用于本次接力。
+只返回可发送的 user 文本，不输出思考、分析、角色标题、状态栏或 HTML。
+${limits?`本次字数必须在 ${limits.min}–${limits.max} 字之间（含边界）。每个非空白 Unicode 字符计 1 字，标点计字，空格和换行不计；只计算最终正文。此范围取代预设、人格和自定义提示词中的篇幅要求。`:'本次未启用字数限制。'}`;
+}

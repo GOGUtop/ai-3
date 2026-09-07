@@ -82,3 +82,16 @@ test('native generation attaches request-local failure details before cleaning u
   await assert.rejects(generateNative({...f.options,request:async(p,b)=>p==='/native-session/status'?{ok:true,phase:'failed',error:'接力模型接口 HTTP 503'}:base(p,b),helper:{generate:async()=>{throw new Error('Bad Gateway');}}}),/HTTP 503/);
   assert.equal(f.calls.at(-1).path,'/native-session/close');
 });
+
+test('native user-only and word-count boundary follows Oracle instructions without replacing preset execution',async()=>{
+  const f=fixture();
+  await generateNative({...f.options,d:{...d,limitWords:true,minWords:50,maxWords:150},extraInstructions:()=>[{role:'system',content:'ORACLE_SENTINEL'}],helper:{generate:async config=>{
+    assert.equal(config.injects.at(-2).content,'ORACLE_SENTINEL');
+    assert.match(config.injects.at(-1).content,/用户角色）：阿遥/);
+    assert.match(config.injects.at(-1).content,/50–150 字/);
+    assert.equal(config.injects.at(-1).depth,0);
+    assert.equal(config.injects.at(-1).should_scan,false);
+    assert.equal(config.custom_api.max_tokens,'same_as_preset');
+    return '我的台词';
+  }}});
+});
