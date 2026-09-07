@@ -1,0 +1,352 @@
+{
+  "source": "https://github.com/namelessone88/story-oracle",
+  "revision": "fd085d38126f68fae9ad5a3222e7689bb25294f9",
+  "authorization": "User confirmed permission to copy, modify and redistribute in this task on 2026-09-07. No upstream LICENSE was present.",
+  "declarations": [
+    {
+      "name": "DEFAULT_SYSTEM_PROMPT",
+      "sha256": "6f683f875cc593d993ffd05ba6139fe28b5466706fe5834c9018d26e51897441"
+    },
+    {
+      "name": "DIAGNOSE_SYSTEM_PROMPT",
+      "sha256": "9a24c7c4689ff2dfe39b0ba7be12e9b9b1f7343da813d0e95f3e7b76d314b1ca"
+    },
+    {
+      "name": "LOREBOOK_SYSTEM_PROMPT",
+      "sha256": "98d9a832cbc61a0211dd4a69ac1c3bff1b6a09d3dbd2add86eba701f2b46157e"
+    },
+    {
+      "name": "ADVISOR_SYSTEM_PROMPT",
+      "sha256": "e46ceca09c4e06407dda60b6d8dfa6f602175b388b20720d6158676e7f89aaa4"
+    },
+    {
+      "name": "FIX_PROMPT_JINGXIAO_DEEPSEEK",
+      "sha256": "24baed4989cc0ea08428a06cd115c45a4ce045e9ec1d16f79fa2a497683b8770"
+    },
+    {
+      "name": "FIX_SYSTEM_PROMPT_TIGHTEN",
+      "sha256": "06d212ff2335df0081c52c550a650853af09d604d28466d2ba72eb3e88fba32f"
+    },
+    {
+      "name": "FIX_TARGET_MODULES",
+      "sha256": "61024f678bd1f7c7f9161efaa79e703e5e5f9bb4afa270a64732fd0f0c27efd9"
+    },
+    {
+      "name": "PERSONA_FRAME",
+      "sha256": "065c1c7a9e54aa15b56a7a73fd9147a6df4f4afc343fc1229a36b5125f773b50"
+    },
+    {
+      "name": "PERSONA_FRAME_CUSTOM",
+      "sha256": "d5ca457289acde763a5a237a43915c75afa95a6d0ba78427ffe77b0df4768216"
+    },
+    {
+      "name": "PERSONAS",
+      "sha256": "18544846d41b251629b7ccc33960a394f128129de32bffe394864293183404ed"
+    },
+    {
+      "name": "CUSTOM_PERSONA_CAPS",
+      "sha256": "f7f5715d2abf17c0dfd2e4e18109f7595ba4aeec3151b0078ba1e22b51ae60a4"
+    },
+    {
+      "name": "normalizeCustomPersonas",
+      "sha256": "c44772ffa119039c2471d57761b80554ac8c094eb80017eace3d2005a11dbc88"
+    },
+    {
+      "name": "allPersonasView",
+      "sha256": "b5acaf01eb06020534c533e089e2a9cdff0059fc9d6301ad9842d0d8d82766d0"
+    },
+    {
+      "name": "findPersonaById",
+      "sha256": "db3d57f62159e2a7b90071255a492193906e77196c1490689b9ec136eae832d9"
+    },
+    {
+      "name": "PERSONA_FLESH_PROMPT",
+      "sha256": "19e80b1d58f72ee86cedf6ef6a4805f30533478475640e3c1001fb3d03073eec"
+    },
+    {
+      "name": "buildPersonaFleshMessages",
+      "sha256": "4b0eee6778c7c536a32d4d11d08048bb98357e70229323a9e893875698702c0b"
+    },
+    {
+      "name": "parsePersonaFleshReply",
+      "sha256": "ca200a3b0840d2df4a4406d9f5d1c7709f098cf9ffc00c81b43d773cf91cbc49"
+    },
+    {
+      "name": "PERSONA_MODE_OVERRIDES",
+      "sha256": "230c9420b1652a07b68416b51b6d18550619b6c7368f6cf9d25d2656e829c90a"
+    },
+    {
+      "name": "PERSONA_STRUCT_GUARD",
+      "sha256": "563a43c0566848b8f026912092f4900b8f072a354c0536341d91d3a9293f5c07"
+    },
+    {
+      "name": "buildPersonaBlock",
+      "sha256": "b8c7b23a23e69f7f317fddb25a90926aaadcdcfe45b2b812ed6b1f6d29f95542"
+    },
+    {
+      "name": "ENABLE_SYSPROMPT_PRESET",
+      "sha256": "97fc90d38f0fd5e94c32645929eeddecb8c1e68ebc271ac67749ca4289fe2549"
+    },
+    {
+      "name": "ENABLE_OFFSTAGE_GUARD",
+      "sha256": "a557021d077b76ba261a9db48f77557e16cfacc8e1a1028503ceffa427fc5f5d"
+    },
+    {
+      "name": "ENABLE_CUSTOM_PERSONAS",
+      "sha256": "14056fc8583ed5f7cba0ca1d0e32ac352e8d957c2b5932c077d84887623e730e"
+    },
+    {
+      "name": "ENABLE_BUILTIN_JAILBREAK",
+      "sha256": "66373a5c60d417119bdba200cc6f07856addad91650d3c5a9c08055715554c2e"
+    },
+    {
+      "name": "SO_JB_SENTINEL",
+      "sha256": "35e2257bd6206823e4267ae0fa17c4517b65b699c439df14373191572c744acf"
+    },
+    {
+      "name": "BUILTIN_JB_LABEL",
+      "sha256": "4185aa05991ddd5adf9c72c84937c311fabe29a8e55463200d5801afd9543d21"
+    },
+    {
+      "name": "BUILTIN_JB_AUTHOR",
+      "sha256": "f68177574ec479edcde084c4badd25cc2e7095930ff98fecc481acc0c337a9dd"
+    },
+    {
+      "name": "BUILTIN_JB_CORE",
+      "sha256": "0c7968877b71dbfec74e34c8e1d2ee81bd213180fe3e68afba20fc5fde8f7e44"
+    },
+    {
+      "name": "BUILTIN_JB_TAIL",
+      "sha256": "c535b5691b6ccaea89e0a1b1a178570ac4573c93ce3897ca80fdf8100fbbbf62"
+    },
+    {
+      "name": "fixTargetEditNote",
+      "sha256": "0537f4d47bbc1ad67abe30dbae80e2da5805ef229c26233663ff94664fded30c"
+    },
+    {
+      "name": "SYSPROMPT_MODES",
+      "sha256": "3825cd872e710091a914ba876a58fbc3ab3343814abe43f5db58e84ec3f7de5b"
+    },
+    {
+      "name": "sysPromptEditMode",
+      "sha256": "b169c2a6b8ec8737b64614239190f294e3f027b55dfcbcb0ed8b8f0fbc89d906"
+    },
+    {
+      "name": "migrateBuiltinJbDefault",
+      "sha256": "a38e05a32818ccc249f49ce199c0fc23840b0b8cd071c1cc623e8ca7199050d9"
+    },
+    {
+      "name": "peFleshAbort",
+      "sha256": "672bbc24eb6e1206462285e6de8ef056038e4a4c5b741fc9cc284ad086b67093"
+    },
+    {
+      "name": "peFleshUndo",
+      "sha256": "904d85407075eb7caf0894acf963a0ef61c6efcefac7264ab275632b00845563"
+    },
+    {
+      "name": "peEls",
+      "sha256": "a63e67dd81cc2e57837f4a3be36476106251a1d881bf02c98c76c23c9154383e"
+    },
+    {
+      "name": "populatePeSel",
+      "sha256": "c28325bb69da78175bc447daae13e2e2368a3ff521897fb440a889b0d3c4ea6a"
+    },
+    {
+      "name": "loadPeFields",
+      "sha256": "8a4f4a4a527021c3e4baf5d22e2f2b43c7948f1a6a180e99dee733a18fc81555"
+    },
+    {
+      "name": "openPersonaEditor",
+      "sha256": "49a996044272cd8e8ed6f17913ab7e73beeb7701f91de9d7127874d8e938bb30"
+    },
+    {
+      "name": "savePersonaFromEditor",
+      "sha256": "21ee31a299b2ad5a3722d4daee1a04e03db08e0e356e6abff889a696b58a2c23"
+    },
+    {
+      "name": "deletePersonaFromEditor",
+      "sha256": "c3b67b1cb3484fb8e5b15e9261e9995a05338b5905955c6aa1e3f32801ee81cc"
+    },
+    {
+      "name": "fleshPersonaFromEditor",
+      "sha256": "4ba6c548324feb8f29849909082431e8e2ee0502fa3ab8a3efd7c552af413793"
+    },
+    {
+      "name": "populatePersonas",
+      "sha256": "7b9f6b374fc9dceb95ca5d42cbf5cfbf1edb98491a6f6b61a9a8e17df37da440"
+    },
+    {
+      "name": "getCompletionPresetManager",
+      "sha256": "b23e9d3d4f89317c885e44e7ec8940e50db47787bcfa44a8da1ace7205140976"
+    },
+    {
+      "name": "getCompletionPresetNames",
+      "sha256": "4831188534ec09609571b36e8ad6f69d3e8a1027794700386a2cc67b217bcdc1"
+    },
+    {
+      "name": "getPresetByName",
+      "sha256": "24838dae1bd20361e0f7e88d4f710d4fe0cc8990debee35a472ed6b5fb234aac"
+    },
+    {
+      "name": "getActiveMainPresetName",
+      "sha256": "48908e6193275fa5ea9a0b7c02910c9d0239592fdf0fc0f2268115a4a1f36c0a"
+    },
+    {
+      "name": "MARKER_IDS",
+      "sha256": "8087f682901e10d2bc8a4a8eb1d4b86359f646b976735e749258a90cf95eb7a5"
+    },
+    {
+      "name": "readPresetOrderedBlocks",
+      "sha256": "b5e8d962a1752163244aeed09670819dfdbc0e391acfd455c2e3523aa761978b"
+    },
+    {
+      "name": "visibleResidue",
+      "sha256": "3dc4b525711a560d9e102f41cccb25a76ac3061d11169a851a81b6503b957e5b"
+    },
+    {
+      "name": "SO_DROP_NAME",
+      "sha256": "c8a82a48dcbf225aab928ad61fb1255caf905bff4d46a26fe0c582274081eada"
+    },
+    {
+      "name": "SO_KEEP_NAME",
+      "sha256": "fc236899f54d76616130f86d5f4974a979906d4ab7fbd458895a2e5bde19def0"
+    },
+    {
+      "name": "classifyBlock",
+      "sha256": "8e945079033b43f1c65c6ef30b8a19f85c8fd61ffabcd955c0d57e4a2d7321b7"
+    },
+    {
+      "name": "buildCurationRows",
+      "sha256": "a27727a54fa587a6637f01a1c7b2940f4e7d07a7ae964aeedc28acf9bcf19d31"
+    },
+    {
+      "name": "snapshotFromRows",
+      "sha256": "532a59e0c0b9781288a1e1d73b533569fb641d81e97310ed497e6e85894791bf"
+    },
+    {
+      "name": "getCuratedSnapshot",
+      "sha256": "eefb6ae294a1aea186a46e22b5d9d99e2ad3eae5c8aea3fd337fb2a86e2ee8c2"
+    },
+    {
+      "name": "presetCurationActive",
+      "sha256": "1ede393ca45a557cacc011b42c894c6afb461615bfd146d8d2a774596f3a0a65"
+    },
+    {
+      "name": "builtinJbActive",
+      "sha256": "cc2c700d8ee6e1f54109d030c50f0dcacb29725b458ee2262279dda71a269e48"
+    },
+    {
+      "name": "wrapBuiltinJb",
+      "sha256": "3871123409ceeadf701176218388a73904c0e3704bd81d3f30425de81b531c67"
+    },
+    {
+      "name": "sysPromptModeDef",
+      "sha256": "1fff758a9a9b44adc8cd912c44d4382a4ac4e78cd0e5df2ebf1730e82c495252"
+    },
+    {
+      "name": "resolveModePrompt",
+      "sha256": "42e451fd290bc6035872eab8a4a1d0b19415fff915739b573dc9b4f54a3c006a"
+    },
+    {
+      "name": "populateSysPromptPresets",
+      "sha256": "e2ac4206e055bb6b30ff8b12da43f6168046c5df0a0702bde9410c81d8ba8406"
+    },
+    {
+      "name": "applySysPromptPresetUiState",
+      "sha256": "84af9edea8b02d2ed341770d893b4b318eeaaf1811c2ddb630e88c0f9c37d81e"
+    },
+    {
+      "name": "loadSysPromptForMode",
+      "sha256": "ead211637aea54223adffcfd2ec43061cf6b7d0a9cf19b008aa715924b7dc5bd"
+    },
+    {
+      "name": "applySysPromptModeUiState",
+      "sha256": "7f9ea2bab1453bd9b6fa99481787c239ab3a4cba827d56f60758ab21d2d301e9"
+    },
+    {
+      "name": "onPresetSelected",
+      "sha256": "e81b36a489fbf2796dd74a6be7d51415aa0a44833930438dfd09c41ffcb10dc6"
+    },
+    {
+      "name": "curationState",
+      "sha256": "a6f62109d3ad84868c0094f54400cecddb07c69cba559ac56a10960180210dc3"
+    },
+    {
+      "name": "CUR_TAG_LABEL",
+      "sha256": "48c5bacd0251ee2fdabeaad76023940d94c365e67873ac8e8762c7e54ac7e689"
+    },
+    {
+      "name": "openCuration",
+      "sha256": "ffb008cc964290798ccbcd34dedcd8cc509f978afa58a28a9191efc1eafab5be"
+    },
+    {
+      "name": "applyCurationChrome",
+      "sha256": "1af4e77fa3aa0b7afe087bcfd07589cf4fc3496af765ec684e6b3d69dd700635"
+    },
+    {
+      "name": "maybeShowCurationWarning",
+      "sha256": "dd3a18bb92ce4dffe9e5c848eaea2bd96e87d30615376030aa11b6e15044c960"
+    },
+    {
+      "name": "closeCuration",
+      "sha256": "079e9550cefd7aeb9f29a0abc72cc0826888d86c922e3692666a0dd9bec0041a"
+    },
+    {
+      "name": "renderCurationRows",
+      "sha256": "032ba98e79eb3c5013ba52a85d329b0b8e765dcc204c6e17e6c1c148c3b845c1"
+    },
+    {
+      "name": "updateCurationCount",
+      "sha256": "e87aa5a3646257ecdcf55059cb961671e42fc5ca5e20d8457074ebf6acde4bf0"
+    },
+    {
+      "name": "saveCuration",
+      "sha256": "a9daef6ab8ce66c701b5ebed69a5e45d8304351754bff456a046310a44cc439a"
+    },
+    {
+      "name": "escapeHtml",
+      "sha256": "fe58c7ba2db70a8529dc978dcbdce3b47fac6930a72d586bc86b53dc7e55648e"
+    },
+    {
+      "name": "escapeAttr",
+      "sha256": "32e2918bb01d8b5ccddc7e7427824d97ac39f46d954359f40fc185778b21ab50"
+    },
+    {
+      "name": "OFFSTAGE_TAILS",
+      "sha256": "9ab5ceb5290501fa5c9edc248ebe906d41687510bd49950e1e896e38e9318e39"
+    },
+    {
+      "name": "OFFSTAGE_PRESET_HEADERS",
+      "sha256": "f3fa3933178f9fc86750022afef0b500ac9d1caf0a00d84a4fafbf2f817221fc"
+    },
+    {
+      "name": "REASONING_TAGS",
+      "sha256": "94cabbdcbff2a605e850725a760c9343f81140b4b4691a86f06f03959d796227"
+    },
+    {
+      "name": "stripReasoningTags",
+      "sha256": "c3f16d022f516728f1ed3b0844fe25606b1ec95db02fe6fc17f7afdfda9e4f49"
+    },
+    {
+      "name": "subst",
+      "sha256": "17c7b655ab3256a357fd493ff5dedbd84979fcc9322f8cb1c58ce6507273f5f6"
+    },
+    {
+      "name": "pushMsg",
+      "sha256": "fa1984af84d4582822e0bdab5dec3b4355dbde3331176753b591f00350b7a2b9"
+    },
+    {
+      "name": "expandMarker",
+      "sha256": "55a56e0f6ab7d4d50bd1a000e01cb4267abd7badb89e7dde7f5e18f347055b2b"
+    },
+    {
+      "name": "buildPresetMessages",
+      "sha256": "53f912e7e50f5e17536fda973f7b73305d05f8538c51479a4847d4e2fc4473be"
+    },
+    {
+      "name": "locateTagOpen",
+      "sha256": "69ec05f33e90277edd5ba84cc72a44c3c60aafe0cfd3087853813fc2505b53bf"
+    }
+  ],
+  "templateSha256": "32240d58b5d144de86e2724907713ea63ecd3d6c888473d6f0afcbbfcb9b1a7c"
+}

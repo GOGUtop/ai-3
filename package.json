@@ -1,0 +1,10 @@
+{
+  "name": "writer-ai-relay",
+  "version": "1.2.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check index.js && node --check core.mjs && node --check context.mjs && node --check native.mjs && node --check oracle/port.mjs && node --check oracle/bridge.mjs && node --check server-plugin/writer-ai-relay-server/index.mjs && node --check server-plugin/writer-ai-relay-server/native-session.mjs && node --check http.mjs",
+    "test": "node --test tests/*.test.mjs"
+  }
+}
