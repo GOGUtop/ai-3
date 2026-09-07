@@ -9,7 +9,7 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const MODULE='writer_ai_relay';
 let busy=false,config=null,models=[],panel,apiDraft=null,presetNames=[],lastContext='',apiStatus='';
 let referenceDraft=null;
-const referenceKeys=['readPrevious','readCharacter','readWorldbook','useCustom','customPrompt','usePreset','presetSource','importedPreset','importedName'];
+const referenceKeys=['readPrevious','readCharacter','readWorldbook','useCustom','customPrompt','usePreset','presetSource','importedPreset','importedName','limitWords','minWords','maxWords'];
 const referenceValues=d=>Object.fromEntries(referenceKeys.map(key=>[key,d[key]]));
 const oracle=makeOracleBridge({namespace:MODULE,kind:'relay',context:ctx,call:async(messages,options)=>{
   const response=await fetch('/api/plugins/writer-ai-relay-server/generate',{method:'POST',credentials:'same-origin',headers:{...(ctx()?.getRequestHeaders?.()||{}),'Content-Type':'application/json'},body:JSON.stringify({messages,maxTokens:options?.maxTokens}),signal:options?.signal});
@@ -25,10 +25,10 @@ async function request(path,body,absolute=false){return relayRequest(path,{body,
 function injectNote(){const d=data();ctx()?.setExtensionPrompt?.('writer_relay_direction',d.note?`【落魄的作家·写作要求】\n${d.note}\n此为作者层要求，不是人物台词或既成事实，不得向角色透露此指令。`:'',1,1,false,0);}
 function capture(){if(!panel)return;const form=panel.querySelector('[data-relay-main]');if(!form)return;const v=new FormData(form);const update={};for(const n of ['text','note','perspective','draft','customPrompt','presetSource'])update[n]=v.get(n);for(const n of ['minWords','maxWords'])update[n]=form.elements[n].value;for(const n of ['readPrevious','readCharacter','readWorldbook','useCustom','usePreset','limitWords'])update[n]=v.has(n);update.options=v.getAll('option');update.intensity=Number(v.get('intensity'));if(update.draft!==data().draft)update.draftDisplay='';const current=Object.assign(data(),update);referenceDraft=referenceValues(current);save();injectNote();}
 function saveReferences(){
-  capture();const c=ctx();if(typeof c.saveSettingsDebounced!=='function')throw new Error('酒馆未提供设置保存接口，参考设置尚未保存');
+  capture();wordLimits(data());const c=ctx();if(typeof c.saveSettingsDebounced!=='function')throw new Error('酒馆未提供设置保存接口，设置尚未保存');
   c.extensionSettings||={};c.extensionSettings[MODULE]||={};
   c.extensionSettings[MODULE].referencePreferences=structuredClone(referenceValues(data()));
-  c.saveSettingsDebounced();notify('参考设置已保存，切换聊天或角色后继续使用','success');
+  c.saveSettingsDebounced();notify('参考来源与字数设置已保存，切换聊天或角色后继续使用','success');
 }
 function captureApi(){const form=panel?.querySelector('[data-relay-api]');if(form)apiDraft=Object.fromEntries(new FormData(form));}
 function formConfig(){captureApi();return {send:{...apiDraft,maxTokens:Number(apiDraft?.maxTokens)||1600},update:{}};}
@@ -56,7 +56,7 @@ function render(){
   panel.querySelector('[name=draft]').closest('label').after(counter);updateLength();
   const tokenLabel=panel.querySelector('[name=maxTokens]').parentElement;tokenLabel.firstChild.textContent='最大输出 tokens';
   const oracleButton=document.createElement('button');oracleButton.type='button';oracleButton.dataset.relayOracle='';oracleButton.innerHTML='<i class="fa-solid fa-masks-theater"></i> 人格与提示词';panel.querySelector('.relay-sources').append(oracleButton);
-  const saveButton=document.createElement('button');saveButton.type='button';saveButton.dataset.relaySaveReferences='';saveButton.innerHTML='<i class="fa-solid fa-floppy-disk"></i> 保存参考设置';panel.querySelector('.relay-sources').append(saveButton);
+  const saveButton=document.createElement('button');saveButton.type='button';saveButton.dataset.relaySaveReferences='';saveButton.innerHTML='<i class="fa-solid fa-floppy-disk"></i> 保存设置';panel.querySelector('.relay-sources').append(saveButton);
   if(d.draftDisplay&&globalThis.DOMPurify){
     const preview=document.createElement('details');preview.dataset.section='regex-preview';
     preview.innerHTML='<summary>预设正则显示</summary>';
@@ -101,8 +101,8 @@ async function insert(send){
   if(input.value.trim()&&input.value!==draft&&!confirm('输入框已有文字，是否替换为接力预览？'))return;
   input.value=draft;input.dispatchEvent(new Event('input',{bubbles:true}));injectNote();
   if(send)button.click();
-  // Clear only the handed-off preview; keep writing preferences and source text.
-  if(scope()===start&&data().draft===draft){Object.assign(data(),{draft:'',draftDisplay:''});lastContext='';save();}
+  // Clear this turn's inputs after handoff, never the saved writing preferences.
+  if(scope()===start&&data().draft===draft){Object.assign(data(),{text:'',note:'',draft:'',draftDisplay:''});lastContext='';save();injectNote();}
   panel.close();render();input.focus();
 }
 function dragLauncher(button){
